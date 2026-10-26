@@ -1,0 +1,30 @@
+# --- Stage 1: Build Stage ---
+FROM maven:3.9.6-eclipse-temurin-21 AS build
+WORKDIR /app
+
+# Copy pom.xml and download dependencies
+COPY backend/pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Copy source code and build package
+COPY backend/src ./src
+RUN mvn clean package -DskipTests -B
+
+# --- Stage 2: Production JRE Runtime ---
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+# Set non-root execution permissions for security hardening
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+
+# Copy built JAR from Build Stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose HTTP API Port
+EXPOSE 8080
+
+# Environment variables profiles configuration
+ENV SPRING_PROFILES_ACTIVE=prod
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

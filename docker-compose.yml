@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: cloud-ai-postgres
+    environment:
+      POSTGRES_DB: cloud_ai_testing
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cloud-network
+
+  # Future services (backend, runner) can be added here for full local simulation
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: ../docker/Dockerfile.backend
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=prod
+  #     - DB_HOST=postgres
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - cloud-network
+
+volumes:
+  postgres_data:
+
+networks:
+  cloud-network:
+    driver: bridge

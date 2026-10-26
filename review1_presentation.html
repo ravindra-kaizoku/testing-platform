@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud-Based AI Software Testing Platform - Review 1 (VIT-AP Custom Diagram)</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card-bg: #ffffff;
+      --border-black: #141414;
+      --text-black: #0a0a0f;
+      --text-muted: #50505f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background-color: #f4f4f6;
+      color: var(--text-black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .slide-viewport {
+      width: 1000px;
+      height: 600px;
+      background-color: var(--bg);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1.5px solid var(--border-black);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 30px 44px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide.active { display: flex; }
+
+    .slide-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .vitap-logo-img {
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .slide-title {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: var(--text-black);
+    }
+
+    .slide-body { flex: 1; overflow: auto; }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      color: var(--text-black);
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid var(--border-black);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-black);
+      margin-bottom: 8px;
+    }
+
+    .card-body { font-size: 12.5px; line-height: 1.7; color: var(--text-muted); }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 15px;
+      border-top: 1px solid var(--border-black);
+      padding-top: 8px;
+    }
+
+    .nav-controls {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    button.btn-nav {
+      background: #141414;
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    button.btn-nav:hover { background: #333333; }
+  </style>
+</head>
+<body>
+
+  <div class="slide-viewport">
+    
+    <!-- SLIDE 1 (TITLE SLIDE) -->
+    <div class="slide active">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo" style="height: 60px;">
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; margin-top: 15px;">
+        <h1 style="font-size: 36px; font-weight: 900; line-height: 1.1; color: #000;">CLOUD-BASED AI SOFTWARE<br>TESTING PLATFORM</h1>
+        <p style="font-size: 18px; font-weight: 700; color: var(--text-muted); margin-top: 10px;">Cloud Computing &mdash; Review 1</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px;">
+        <div style="font-size: 12.5px; line-height: 1.8; font-weight: 800; color: #000;">
+          23MIC7176 &nbsp;&mdash;&nbsp; Tarun govardhan<br>
+          23MIC7202 &nbsp;&mdash;&nbsp; sharan rao<br>
+          23MIS7297 &nbsp;&mdash;&nbsp; J Ravindra<br>
+          23MIS7257 &nbsp;&mdash;&nbsp; N Kartheek<br>
+          23MIS7229 &nbsp;&mdash;&nbsp; Pardhasaradhi M
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--text-muted);">
+          Guided by &mdash; [Dr. Shaik Kareemulla]
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>1</span></div>
+    </div>
+
+    <!-- SLIDE 2 (PROBLEM STATEMENT - FIRST SLIDE AFTER TITLE) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">PROBLEM STATEMENT</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card" style="padding: 16px;">
+          <div class="card-body" style="font-size: 13.5px; color: #000;">
+            Writing software unit tests manually takes a lot of time, and developers frequently miss hidden bugs and edge cases.
+          </div>
+        </div>
+        <div class="card" style="flex: 1;">
+          <div class="card-title">KEY CHALLENGES IN SOFTWARE TESTING</div>
+          <div class="card-body" style="font-size: 12.5px; line-height: 1.8; color: #000;">
+            • Manual Test Writing: Writing unit test cases by hand is slow, repetitive, and time-consuming.<br>
+            • Missed Bugs & Edge Cases: Important scenarios like null inputs or empty values are easy to forget.<br>
+            • Machine Differences: Code that works on one laptop can fail on another due to different software setups.<br>
+            • Confusing Error Messages: Standard build tools show long error logs without explaining how to fix them.<br>
+            • Computer Slowdowns: Running heavy test suites on personal laptops uses too much memory and CPU.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>2</span></div>
+    </div>
+
+    <!-- SLIDE 3 (INTRODUCTION) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">INTRODUCTION</div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 400px;">
+          <div class="card-body" style="font-size: 13.5px; line-height: 2.0; color: #000;">
+            • Automated AI Platform: A web system that automatically creates and runs unit tests for Java projects.<br><br>
+            • Powered by AI: Uses Artificial Intelligence to read code logic and write complete JUnit test cases.<br><br>
+            • Safe Cloud Execution: Runs tests in isolated cloud containers so your computer stays fast and secure.<br><br>
+            • Simple 4-Step Process: Upload project ZIP &rarr; AI writes tests &rarr; Cloud runs tests &rarr; View results & bug fixes.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>3</span></div>
+    </div>
+
+    <!-- SLIDE 4 (OBJECTIVES) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">OBJECTIVES</div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 400px;">
+          <div class="card-body" style="font-size: 12.5px; line-height: 1.9; color: #000;">
+            • 1. Automatic Test Writing &mdash; Use AI to generate unit tests for normal code and tricky edge cases.<br>
+            • 2. Easy Project Upload &mdash; Allow users to drag and drop Java project ZIP files safely.<br>
+            • 3. Isolated Cloud Running &mdash; Execute test suites in temporary cloud containers for consistent results.<br>
+            • 4. Smart Error Explanations &mdash; Explain test failures in plain English and suggest automatic code fixes.<br>
+            • 5. Live Progress Dashboard &mdash; Show real-time test progress, pass/fail totals, and execution logs.<br>
+            • 6. Secure Cloud Storage &mdash; Keep project files, code versions, and test reports safe in cloud databases.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>4</span></div>
+    </div>
+
+    <!-- SLIDE 5 (ARCHITECTURAL DIAGRAM - UPLOADED IMAGE) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">ARCHITECTURAL DIAGRAM</div>
+      </div>
+      <div class="slide-body" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media_1788772298740.jpg" alt="Architectural Diagram" style="max-width: 95%; max-height: 420px; object-fit: contain; border-radius: 6px; border: 1.5px solid #141414;">
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>5</span></div>
+    </div>
+
+    <!-- SLIDE 6 (LITERATURE REVIEW) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">LITERATURE REVIEW</div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 400px;">
+          <div class="card-title">KEY AREAS REVIEWED TODAY</div>
+          <div class="card-body" style="font-size: 12px; line-height: 1.8; color: #000;">
+            • Traditional Testing Frameworks: Tools like JUnit automate running tests, but humans still write every test case manually.<br>
+            • AI Code Generation: AI models can write test code, but standard tools don't execute tests in safe sandboxes.<br>
+            • Container Sandboxes: Isolation tools keep test environments clean, but require complicated manual configuration.<br>
+            • Cloud Storage & Services: Cloud platforms store files reliably, but lack automated error analysis and fix suggestions.<br>
+            • Our Proposed Gap Solution: We combine AI test creation + Cloud container execution + Automated error fixes into one website.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>6</span></div>
+    </div>
+
+    <!-- SLIDE 7 (MODULES 1 & 2) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">MODULES</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card">
+          <div class="card-title">MODULE 1: USER & PROJECT MANAGEMENT</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • User login, developer accounts, and role permissions<br>
+            • Project ZIP file upload with built-in security checks<br>
+            • Interactive source code file tree viewer on screen
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">MODULE 2: AI TEST GENERATOR ENGINE</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Reads Java files, classes, methods, and functions<br>
+            • Automatically writes test suites for normal logic and edge cases<br>
+            • Formats generated code into ready-to-run Java test files
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>7</span></div>
+    </div>
+
+    <!-- SLIDE 8 (MODULES 3 & 4) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">MODULES</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card">
+          <div class="card-title">MODULE 3: CLOUD EXECUTION SANDBOX</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Starts a fresh, temporary cloud container for each project run<br>
+            • Executes test builds automatically in isolation<br>
+            • Prevents test runs from affecting developer laptops or servers
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">MODULE 4: ERROR FIXES & DIAGNOSTICS</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Captures build failures, compiler errors, and stack traces<br>
+            • Explains the exact reason why a test failed in plain language<br>
+            • Provides a one-click button to apply automatic code fixes
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>8</span></div>
+    </div>
+
+    <!-- SLIDE 9 (MODULES 5 & 6) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">MODULES</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card">
+          <div class="card-title">MODULE 5: LIVE DASHBOARD & ANALYTICS</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Streams real-time test execution logs directly to the web page<br>
+            • Displays test pass/fail charts and project health metrics<br>
+            • Shows side-by-side code diffs comparing broken vs fixed code
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">MODULE 6: CLOUD STORAGE & MONITORING</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Stores project archives and test reports securely in cloud storage<br>
+            • Keeps historical logs of past test runs in a central database<br>
+            • Monitors system speed, uptime, and user data security
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>9</span></div>
+    </div>
+
+    <!-- SLIDE 10 (CURRENT STATUS) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">CURRENT STATUS</div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 400px;">
+          <div class="card-title">CURRENT STATUS &mdash; REVIEW 1 PROGRESS</div>
+          <div class="card-body" style="font-size: 12.5px; line-height: 1.9; color: #000;">
+            • Finalized project topic, scope, and problem statement<br>
+            • Identified system objectives and team responsibilities<br>
+            • Designed complete cloud architecture and data workflow<br>
+            • Mapped core project modules and feature requirements<br>
+            • Selected technology stack (React, Spring Boot, AI & AWS Cloud)<br>
+            • Next Focus: Build backend APIs, database tables, and AI test generation pipeline
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>10</span></div>
+    </div>
+
+    <!-- SLIDE 11 (PLAN OF ACTION - PHASES 1 & 2) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">PLAN OF ACTION</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card">
+          <div class="card-title">PHASE 1 &mdash; FOUNDATION</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Set up cloud storage buckets and database tables<br>
+            • Create user login and dashboard layout design<br>
+            • Build initial ZIP file upload screens
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">PHASE 2 &mdash; CORE BACKEND & AI</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Build backend server APIs to handle project decompression<br>
+            • Connect AI model to parse Java files and write unit tests<br>
+            • Link web dashboard screens to backend services
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>11</span></div>
+    </div>
+
+    <!-- SLIDE 12 (PLAN OF ACTION - PHASES 3 & 4) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">PLAN OF ACTION</div>
+      </div>
+      <div class="slide-body" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="card">
+          <div class="card-title">PHASE 3 &mdash; SANDBOX & DIAGNOSTICS</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Build the cloud container test runner for clean execution<br>
+            • Connect error log parser to AI diagnostic engine<br>
+            • Enable automatic code fix suggestions on the dashboard
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">PHASE 4 &mdash; TESTING & DEPLOYMENT</div>
+          <div class="card-body" style="font-size: 12px; color: #000;">
+            • Test full workflow with real Java software projects<br>
+            • Deploy backend and web portal to cloud servers for live access<br>
+            • Add analytics dashboards and complete final documentation
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>12</span></div>
+    </div>
+
+    <!-- SLIDE 13 (CONCLUSION) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">CONCLUSION</div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 400px;">
+          <div class="card-body" style="font-size: 13px; line-height: 2.0; color: #000;">
+            • Provides a complete, automated software testing platform for developers.<br><br>
+            • Saves time by using AI to write unit tests automatically.<br><br>
+            • Keeps code execution consistent by running tests in clean cloud containers.<br><br>
+            • Helps developers fix bugs faster with automated error explanations and code fixes.<br><br>
+            • Delivers a simple, user-friendly web portal for managing software quality.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>13</span></div>
+    </div>
+
+    <!-- SLIDE 14 (REFERENCES) -->
+    <div class="slide">
+      <div class="slide-header">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo">
+        <div class="slide-title">REFERENCES</div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 400px;">
+          <div class="card-body" style="font-size: 12.5px; line-height: 1.9; color: #000;">
+            • 1. JUnit 5 User Guide & Documentation &mdash; https://junit.org/junit5/docs/current/user-guide/<br>
+            • 2. Spring Boot Framework Reference &mdash; https://docs.spring.io/spring-boot/<br>
+            • 3. AWS Bedrock Foundation Models &mdash; https://docs.aws.amazon.com/bedrock/<br>
+            • 4. AWS ECS Fargate User Guide &mdash; https://docs.aws.amazon.com/AmazonECS/<br>
+            • 5. Docker Container Isolation Overview &mdash; https://docs.docker.com/get-started/overview/<br>
+            • 6. S. Bareiß et al., "Code Generation Tools in Software Testing: A Survey," IEEE TSE, 2023.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>14</span></div>
+    </div>
+
+    <!-- SLIDE 15 (THANK YOU / Q+A) -->
+    <div class="slide">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <img src="file:///C:/Users/ravindra_007/.gemini/antigravity/brain/48683922-fa9d-4d33-a4ed-e73e1d2a056a/.user_uploaded/media__1788286698913.jpg" class="vitap-logo-img" alt="VIT-AP Logo" style="height: 60px;">
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; margin-top: 30px;">
+        <h1 style="font-size: 48px; font-weight: 900; color: #000;">THANK YOU</h1>
+        <p style="font-size: 18px; font-weight: 700; color: var(--text-muted); margin-top: 10px; margin-bottom: 20px;">Questions and discussion welcome.</p>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+          Cloud-Based AI Software Testing Platform &mdash; Review 1<br>
+          Department of Computer Science & Engineering | VIT-AP University
+        </p>
+      </div>
+      <div class="slide-footer"><span>Cloud-Based AI Software Testing Platform</span><span>15</span></div>
+    </div>
+
+  </div>
+
+  <div class="nav-controls">
+    <button class="btn-nav" id="btnPrev">Previous</button>
+    <span id="slideCounter" style="color: #000; font-weight: 700; font-size: 14px;">Slide 1 of 15</span>
+    <button class="btn-nav" id="btnNext">Next</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const slideCounter = document.getElementById('slideCounter');
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      slideCounter.textContent = `Slide ${index + 1} of ${totalSlides}`;
+    }
+
+    document.getElementById('btnPrev').addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    });
+
+    document.getElementById('btnNext').addEventListener('click', () => {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          showSlide(currentSlide);
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (currentSlide > 0) {
+          currentSlide--;
+          showSlide(currentSlide);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

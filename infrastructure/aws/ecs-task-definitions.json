@@ -1,0 +1,73 @@
+{
+  "apiTaskDefinition": {
+    "family": "ai-testing-platform-api",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::123456789012:role/aiTestingApiTaskRole",
+    "containerDefinitions": [
+      {
+        "name": "api-server",
+        "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/ai-testing-platform-backend:latest",
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 8080,
+            "hostPort": 8080,
+            "protocol": "tcp"
+          }
+        ],
+        "environment": [
+          { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" },
+          { "name": "AWS_REGION", "value": "us-east-1" },
+          { "name": "S3_BUCKET_NAME", "value": "ai-testing-platform-workspaces" },
+          { "name": "DATABASE_URL", "value": "jdbc:postgresql://rds-postgresql-endpoint:5432/testingdb" },
+          { "name": "DATABASE_USER", "value": "postgres" },
+          { "name": "DATABASE_PASSWORD", "value": "prodsecurepassword" }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/ai-testing-platform-api",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "api"
+          }
+        }
+      }
+    ]
+  },
+  "executorTaskDefinition": {
+    "family": "ai-testing-platform-executor",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "512",
+    "memory": "1024",
+    "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::123456789012:role/aiTestingExecutorTaskRole",
+    "containerDefinitions": [
+      {
+        "name": "test-runner",
+        "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/ai-testing-platform-executor:latest",
+        "essential": true,
+        "environment": [
+          { "name": "AWS_REGION", "value": "us-east-1" },
+          { "name": "S3_BUCKET", "value": "ai-testing-platform-workspaces" },
+          { "name": "PROJECT_ID", "value": "" },
+          { "name": "RUN_ID", "value": "" },
+          { "name": "WORKSPACE_KEY", "value": "" },
+          { "name": "BACKEND_API_URL", "value": "http://api-internal-alb.local:8080" }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/ai-testing-platform-executor",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "executor"
+          }
+        }
+      }
+    ]
+  }
+}
