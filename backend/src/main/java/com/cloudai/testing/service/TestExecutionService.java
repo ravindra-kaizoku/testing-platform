@@ -42,8 +42,8 @@ public class TestExecutionService {
     @Value("${app.storage.local-dir:./local-storage}")
     private String localDir;
 
-    @Value("${app.maven-path:C:\\Users\\ravindra_007\\.m2\\portable-maven\\apache-maven-3.9.6\\bin\\mvn.cmd}")
-    private String mavenPath;
+    @Value("${app.maven-path:}")
+    private String configuredMavenPath;
 
     private ExecutorService executorService;
     private Path workspaceRoot;
@@ -52,6 +52,82 @@ public class TestExecutionService {
     public void init() {
         this.executorService = Executors.newFixedThreadPool(4);
         this.workspaceRoot = Paths.get(localDir, "workspaces").toAbsolutePath().normalize();
+    }
+
+    private File findProjectRootDir(File workspaceDir) {
+        if (new File(workspaceDir, "pom.xml").exists()) {
+            return workspaceDir;
+        }
+        File[] subdirs = workspaceDir.listFiles(File::isDirectory);
+        if (subdirs != null) {
+            for (File sub : subdirs) {
+                if (new File(sub, "pom.xml").exists()) {
+                    return sub;
+                }
+            }
+        }
+        return workspaceDir;
+    }
+
+    private void ensurePomExists(File projectDir) {
+        File pom = new File(projectDir, "pom.xml");
+        if (!pom.exists()) {
+            log.info("No pom.xml found in {}. Generating default JUnit 5 POM.", projectDir);
+            String defaultPom = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n" +
+                    "         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+                    "         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n" +
+                    "    <modelVersion>4.0.0</modelVersion>\n" +
+                    "    <groupId>com.cloudai</groupId>\n" +
+                    "    <artifactId>sandbox-project</artifactId>\n" +
+                    "    <version>1.0.0</version>\n" +
+                    "    <properties>\n" +
+                    "        <maven.compiler.source>17</maven.compiler.source>\n" +
+                    "        <maven.compiler.target>17</maven.compiler.target>\n" +
+                    "        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n" +
+                    "    </properties>\n" +
+                    "    <dependencies>\n" +
+                    "        <dependency>\n" +
+                    "            <groupId>org.junit.jupiter</groupId>\n" +
+                    "            <artifactId>junit-jupiter</artifactId>\n" +
+                    "            <version>5.10.2</version>\n" +
+                    "            <scope>test</scope>\n" +
+                    "        </dependency>\n" +
+                    "    </dependencies>\n" +
+                    "</project>\n";
+            try {
+                java.nio.file.Files.writeString(pom.toPath(), defaultPom);
+            } catch (Exception e) {
+                log.warn("Failed to generate default POM: {}", e.getMessage());
+            }
+        }
+    }
+
+    private String resolveMavenExecutable(File projectDir) {
+        boolean isWindows = System.getProperty("os.name", "").toLowerCase().contains("win");
+
+        // 1. Check for maven wrapper inside project
+        if (isWindows) {
+            File winWrapper = new File(projectDir, "mvnw.cmd");
+            if (winWrapper.exists()) return winWrapper.getAbsolutePath();
+        } else {
+            File nixWrapper = new File(projectDir, "mvnw");
+            if (nixWrapper.exists()) {
+                nixWrapper.setExecutable(true);
+                return nixWrapper.getAbsolutePath();
+            }
+        }
+
+        // 2. Check if a custom valid path was specified
+        if (configuredMavenPath != null && !configuredMavenPath.isBlank()) {
+            File custom = new File(configuredMavenPath);
+            if (custom.exists()) {
+                return configuredMavenPath;
+            }
+        }
+
+        // 3. Fallback to standard system PATH executable
+        return isWindows ? "mvn.cmd" : "mvn";
     }
 
     @PreDestroy
@@ -97,8 +173,6 @@ public class TestExecutionService {
 
         StringBuilder logBuffer = new StringBuilder();
         logBuffer.append("[SYSTEM INFO] Initializing test runner sandbox...\n");
-        logBuffer.append("[SYSTEM INFO] Working directory: ").append(workspaceRoot.resolve(projectId.toString())).append("\n");
-        logBuffer.append("[SYSTEM INFO] Launching build: ").append(mavenPath).append(" clean test\n\n");
 
         File workspaceDir = workspaceRoot.resolve(projectId.toString()).toFile();
         if (!workspaceDir.exists() || !workspaceDir.isDirectory()) {
@@ -107,11 +181,18 @@ public class TestExecutionService {
             return;
         }
 
+        File projectDir = findProjectRootDir(workspaceDir);
+        ensurePomExists(projectDir);
+        String mavenExecutable = resolveMavenExecutable(projectDir);
+
+        logBuffer.append("[SYSTEM INFO] Working directory: ").append(projectDir.getAbsolutePath()).append("\n");
+        logBuffer.append("[SYSTEM INFO] Launching build: ").append(mavenExecutable).append(" clean test\n\n");
+
         Process process = null;
         try {
             // Setup maven process
-            ProcessBuilder pb = new ProcessBuilder(mavenPath, "clean", "test");
-            pb.directory(workspaceDir);
+            ProcessBuilder pb = new ProcessBuilder(mavenExecutable, "clean", "test");
+            pb.directory(projectDir);
             pb.redirectErrorStream(true); // combine stdout and stderr
 
             process = pb.start();

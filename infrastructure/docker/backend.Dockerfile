@@ -10,14 +10,14 @@ RUN mvn dependency:go-offline -B
 COPY backend/src ./src
 RUN mvn clean package -DskipTests -B
 
-# --- Stage 2: Production JRE Runtime ---
-FROM eclipse-temurin:21-jre-alpine
+# --- Stage 2: Production Runtime with JDK and Maven Test Runner ---
+FROM maven:3.9.6-eclipse-temurin-21-alpine
 WORKDIR /app
 
-# Set non-root execution permissions and create writable storage directory
+# Set non-root execution permissions, home directory, and storage directory
 RUN addgroup -S spring && adduser -S spring -G spring && \
-    mkdir -p /app/local-storage && \
-    chown -R spring:spring /app
+    mkdir -p /app/local-storage /home/spring/.m2 && \
+    chown -R spring:spring /app /home/spring
 
 USER spring:spring
 

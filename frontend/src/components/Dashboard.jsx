@@ -31,8 +31,8 @@ function Dashboard({ projectId, projectName, detectedFilesCount, onReset, isDark
   const [mode, setMode] = useState('view'); // 'view', 'edit-test', 'run-tests'
   const [activeRun, setActiveRun] = useState(null);
   
-  // Navigation State: 'overview', 'workspace', 'settings'
-  const [activeTab, setActiveTab] = useState('overview');
+  // Navigation State: 'workspace' (first after upload), 'overview' (second), 'settings'
+  const [activeTab, setActiveTab] = useState('workspace');
   
   const pollingRef = useRef(null);
 
@@ -187,27 +187,7 @@ function Dashboard({ projectId, projectName, detectedFilesCount, onReset, isDark
         {/* Navigation Tabs */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, width: '100%', alignItems: 'center' }}>
           
-          {/* Overview Tab Button */}
-          <button 
-            onClick={() => setActiveTab('overview')}
-            style={{
-              background: activeTab === 'overview' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-              border: 'none',
-              padding: '12px',
-              borderRadius: '12px',
-              cursor: 'pointer',
-              color: activeTab === 'overview' ? '#fff' : '#64748b',
-              transition: 'all 0.2s',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-            title="Overview Dashboard"
-          >
-            <BarChart3 size={20} />
-          </button>
-
-          {/* Workspace Tab Button */}
+          {/* 1. Workspace Tab Button (Primary after upload) */}
           <button 
             onClick={() => setActiveTab('workspace')}
             style={{
@@ -225,6 +205,26 @@ function Dashboard({ projectId, projectName, detectedFilesCount, onReset, isDark
             title="Java Files Workspace"
           >
             <Code2 size={20} />
+          </button>
+
+          {/* 2. Overview / Telemetry Tab Button (Second) */}
+          <button 
+            onClick={() => setActiveTab('overview')}
+            style={{
+              background: activeTab === 'overview' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+              border: 'none',
+              padding: '12px',
+              borderRadius: '12px',
+              cursor: 'pointer',
+              color: activeTab === 'overview' ? '#fff' : '#64748b',
+              transition: 'all 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            title="Execution Telemetry & Overview"
+          >
+            <BarChart3 size={20} />
           </button>
 
           {/* Settings Tab Button */}
