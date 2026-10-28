@@ -209,7 +209,10 @@ function Dashboard({ projectId, projectName, detectedFilesCount, onReset, isDark
 
           {/* 2. Overview / Telemetry Tab Button (Second) */}
           <button 
-            onClick={() => setActiveTab('overview')}
+            onClick={() => {
+              fetchRuns();
+              setActiveTab('overview');
+            }}
             style={{
               background: activeTab === 'overview' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
               border: 'none',
@@ -353,6 +356,7 @@ function Dashboard({ projectId, projectName, detectedFilesCount, onReset, isDark
             projectId={projectId} 
             files={files} 
             runs={runs} 
+            onRefresh={fetchRuns}
           />
         )}
 
@@ -403,6 +407,7 @@ function Dashboard({ projectId, projectName, detectedFilesCount, onReset, isDark
                   runData={activeRun}
                   onBack={() => {
                     stopPolling();
+                    fetchRuns();
                     setMode('view');
                   }}
                 />

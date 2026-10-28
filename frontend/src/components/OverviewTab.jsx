@@ -1,7 +1,11 @@
 import React from 'react';
 import { AlertTriangle, Play, Sparkles, HelpCircle, FileText, CheckCircle, Activity, Award } from 'lucide-react';
 
-function OverviewTab({ projectId, files = [], runs = [] }) {
+function OverviewTab({ projectId, files = [], runs = [], onRefresh }) {
+  React.useEffect(() => {
+    if (onRefresh) onRefresh();
+  }, [projectId]);
+
   // Aggregate real stats from runs
   const completedRuns = runs.filter(r => r.status === 'COMPLETED');
   const failedRuns = runs.filter(r => r.status === 'FAILED' || r.status === 'TIMEOUT');
@@ -11,10 +15,15 @@ function OverviewTab({ projectId, files = [], runs = [] }) {
   let failedTests = 0;
   
   runs.forEach(r => {
-    const passed = Math.max(0, (r.testsRun || 0) - (r.failures || 0) - (r.errors || 0));
-    const failed = (r.failures || 0) + (r.errors || 0);
+    let tRun = r.testsRun || 0;
+    let fails = (r.failures || 0) + (r.errors || 0);
+    if ((r.status === 'FAILED' || r.status === 'TIMEOUT') && tRun === 0 && fails === 0) {
+      tRun = 1;
+      fails = 1;
+    }
+    const passed = Math.max(0, tRun - fails);
     passedTests += passed;
-    failedTests += failed;
+    failedTests += fails;
   });
 
   const totalTests = passedTests + failedTests;

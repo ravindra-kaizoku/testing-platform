@@ -213,6 +213,20 @@ public class ProjectService {
         generatedTest = generatedTestRepository.save(generatedTest);
         log.info("Generated unit tests for file: {}. Saved to path: {}", sourceFile.getClassName(), testPath);
 
+        // Pre-write generated test to disk workspace
+        try {
+            File workspaceDir = workspaceRoot.resolve(projectId.toString()).toFile();
+            File testFile = new File(workspaceDir, testPath);
+            File parent = testFile.getParentFile();
+            if (parent != null && !parent.isDirectory()) {
+                parent.mkdirs();
+            }
+            Files.writeString(testFile.toPath(), testCode);
+            log.info("Successfully synced generated test to disk: {}", testFile.getAbsolutePath());
+        } catch (Exception e) {
+            log.warn("Could not pre-write test to disk: {}", e.getMessage());
+        }
+
         return new GeneratedTestDto(
                 generatedTest.getId(),
                 sourceFile.getId(),
