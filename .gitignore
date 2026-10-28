@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Production build outputs
+dist/
+frontend/dist/
+target/
+backend/target/
+
+# Local storage and environment
+.env
+local-storage/
+backend/local-storage/
+
+# IDE & OS files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
