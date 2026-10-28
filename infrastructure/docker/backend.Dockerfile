@@ -24,7 +24,7 @@ COPY --from=build /app/target/*.jar app.jar
 # Expose HTTP API Port
 EXPOSE 8080
 
-# Environment variables profiles configuration
-ENV SPRING_PROFILES_ACTIVE=prod
+# Environment variables profiles configuration (dev uses embedded H2; override with prod if PostgreSQL is provided)
+ENV SPRING_PROFILES_ACTIVE=dev
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
