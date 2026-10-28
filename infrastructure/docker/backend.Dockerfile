@@ -14,12 +14,15 @@ RUN mvn clean package -DskipTests -B
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Set non-root execution permissions for security hardening
-RUN addgroup -S spring && adduser -S spring -G spring
+# Set non-root execution permissions and create writable storage directory
+RUN addgroup -S spring && adduser -S spring -G spring && \
+    mkdir -p /app/local-storage && \
+    chown -R spring:spring /app
+
 USER spring:spring
 
 # Copy built JAR from Build Stage
-COPY --from=build /app/target/*.jar app.jar
+COPY --chown=spring:spring --from=build /app/target/*.jar app.jar
 
 # Expose HTTP API Port
 EXPOSE 8080

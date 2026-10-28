@@ -34,8 +34,15 @@ public class LocalStorageServiceImpl implements StorageService {
             this.rootPath = Paths.get(uploadDir).toAbsolutePath().normalize();
             Files.createDirectories(this.rootPath);
             log.info("Initialized local storage directory at: {}", rootPath);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not initialize local storage directory", e);
+        } catch (Exception e) {
+            log.warn("Could not initialize local storage at '{}', falling back to system temp dir: {}", uploadDir, e.getMessage());
+            try {
+                this.rootPath = Paths.get(System.getProperty("java.io.tmpdir"), "cloud-ai-storage").toAbsolutePath().normalize();
+                Files.createDirectories(this.rootPath);
+                log.info("Initialized fallback storage directory at: {}", rootPath);
+            } catch (Exception ex) {
+                throw new RuntimeException("Could not initialize local storage directory or temp fallback", ex);
+            }
         }
     }
 
